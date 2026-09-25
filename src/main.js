@@ -27,11 +27,11 @@ if(window.location.pathname == '/index.html'){
   // if(!loggedin){
   //   window.location.replace('login.html')
   // }
-  else{
+  // else{
     const index = mount(Index, {
       target: document.querySelector('main')
     })
-  }
+  // }
 }
 else if(window.location.pathname == '/profile.html'){
   if(!loggedin){
