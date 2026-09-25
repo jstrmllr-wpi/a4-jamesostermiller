@@ -2,8 +2,7 @@
     import RecipeList from './lib/RecipeList.svelte'
 
     const getRecipes = function() {
-        let path = 'http://localhost:5173/myrecipes'
-        const p = fetch(path, {
+        const p = fetch('/myrecipes', {
             method:'GET' 
         })
         .then( response => response.json() )
