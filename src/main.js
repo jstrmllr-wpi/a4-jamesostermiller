@@ -1,9 +1,35 @@
 import { mount } from 'svelte'
-import './app.css'
-import App from './App.svelte'
+import RecipeList from './RecipeList.svelte'
 
-const app = mount(App, {
-  target: document.getElementById('app'),
+
+const check_login = async function() {
+  const response = await fetch( '/amiloggedin', {
+    method:'GET'
+  })
+
+  const returnedtext = await response.text()
+
+  const username = JSON.parse(returnedtext).username
+  if(!username){
+    window.location.replace('login.html')
+  }
+  return username
+}
+
+if(window.location.pathname == '/index.html'
+  || window.location.pathname == '/profile.html'){
+    const username = await check_login()
+  }
+
+// window.onload = function() {
+  
+// }
+
+
+let onprofile = window.location.pathname == '/profile.html'
+const recipelist = mount(RecipeList, {
+  target: document.getElementById('recipe-list'),
+  props: {onprofile}
 })
 
-export default app
+export default recipelist
