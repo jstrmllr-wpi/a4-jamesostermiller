@@ -24,9 +24,9 @@ if(username){
 
 // Handles page-specific javascript
 if(window.location.pathname == '/index.html'){
-  if(!loggedin){
-    window.location.replace('login.html')
-  }
+  // if(!loggedin){
+  //   window.location.replace('login.html')
+  // }
   else{
     const index = mount(Index, {
       target: document.querySelector('main')
