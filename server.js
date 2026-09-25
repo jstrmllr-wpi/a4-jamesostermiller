@@ -118,7 +118,10 @@ app.get('/allrecipes', async (req,res) => {
 app.get('/myrecipes', async (req,res) => {
   const id = new ObjectId(req.session.user)
   const user = await userdb.findOne({_id:id})
-  const result = await recipedb.find({author:user.username}).toArray()
+  let result = null
+  if(user){
+    result = await recipedb.find({author:user.username}).toArray()
+  }
   res.json(result)
 })
 
@@ -134,16 +137,21 @@ app.post( '/newrecipe', async (req,res) => {
   const user = await userdb.findOne({_id:userid})
   newrecipe.author = user.username
   const acknowledgement = await recipedb.insertOne(newrecipe)
-  id = acknowledgement.insertedId
-  const result = await recipedb.findOne({_id:id})
+  const id = acknowledgement.insertedId
+  // const result = await recipedb.findOne({_id:id})
   console.log('Recipe "' + newrecipe.name + '" added (id ' + id + ')');
+
+  const result = await recipedb.find({}).toArray()
   res.json(result)
 })
 
 app.post( '/deleterecipe', async (req,res) => {
-  id = new ObjectId(req.body.id)
-  const result = await recipedb.deleteOne({_id:id})
-  console.log('Recipe ' + id + ' deleted: ' + (result.deletedCount === 1))
+  const id = new ObjectId(req.body.id)
+  const confirm = await recipedb.deleteOne({_id:id})
+  console.log('Recipe ' + id + ' deleted: ' + (confirm.deletedCount === 1))
+  // res.json(confirm)
+
+  const result = await recipedb.find({}).toArray()
   res.json(result)
 })
 

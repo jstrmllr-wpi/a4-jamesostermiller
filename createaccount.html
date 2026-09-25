@@ -8,7 +8,7 @@
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@87.5,200..900&family=Xanh+Mono:ital@0;1&display=swap" rel="stylesheet">
-  <!-- <script src='src/main.js' type='module'></script> -->
+  <script src='src/main.js' type='module'></script>
   <link rel='stylesheet' href ='src/css/custom-styles.css'>
   <link rel='stylesheet' href='normalize.css'>
   <link rel='stylesheet' href='pure.css'>
@@ -19,37 +19,11 @@
 </head>
 
 <body>
-  <header class='pure-menu pure-menu-horizontal'>
-    <h1 class='pure-menu-heading'>Recipe Wiki</h1>
-    <ul class='pure-menu-list'>
-      <li class='pure-menu-item'>
-        <a href='login.html' class='pure-menu-link'>Log in</a>
-      </li>
-      <li class='pure-menu-item selected'>
-        <a href='createaccount.html' class='pure-menu-link'>Create account</a>
-      </li>
-    </ul>
-  </header>
+  <header class='pure-menu pure-menu-horizontal'></header>
   
   <main class='pure-g form-wrapper'>
     <h2 class='pure-u-1'>Create Account</h2>
-    <section class='pure-u-1'>
-        <form action='/createaccount' method='POST' class='pure-form pure-form-aligned centered'>
-            <div class='pure-control-group'>
-                <label for='username'>*Username:</label>
-                <input type='text' id='username' name='username' required>
-            </div>
-
-            <div class='pure-control-group'>
-                <label for='password'>*Password:</label>
-                <input type='password' id='password' name='password' required>
-            </div>
-
-            <div class='pure-controls'>
-            <input type='submit' value='Submit' class='pure-button pure-button-primary'>
-            </div>
-        </form>
-    </section>
+    <section id='login-form' class='pure-u-1'></section>
   </main>
 </body>
 </html>

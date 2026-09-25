@@ -1,10 +1,10 @@
 <script>
-  let {recipe, onprofile} = $props()
+  let {recipe, onprofile, deleteFunction} = $props()
   import TimeItem from './TimeItem.svelte'
 </script>
 
-<article id="recipe{recipe.name}" class="pure-g">
-  <h3 class="pure-u-1">Pancakes</h3>
+<article id="recipe{recipe._id}" class="pure-g">
+  <h3 class="pure-u-1">{recipe.name}</h3>
   <time-info class="pure-u-1">
     <TimeItem text={'Prep time'} time={recipe.preptime} />
     <TimeItem text={'Cook time'} time={recipe.cooktime} />
@@ -20,7 +20,7 @@
     <author-card class="pure-u-1-2">{recipe.author}</author-card>
   {:else}
     <button-wrapper class="pure-u-1">
-      <input class="pure-button" type="button" value="Delete">
+      <input onclick={deleteFunction} class="pure-button" type="button" value="Delete">
     </button-wrapper>
   {/if}
 </article>
