@@ -46,6 +46,7 @@ else if(window.location.pathname == '/login.html'){
     window.location.replace('index.html')
   }
   else{
+    console.log('Attempting to mount login')
     mountLoginForm('/login')
   }
 }
@@ -73,7 +74,7 @@ function mountRecipeList(onprofile){
 
 function mountLoginForm(action){
   const loginForm = mount(LoginForm, {
-    target: document.getElementById('login-form'),
+    target: document.querySelector('main'),
     props: {action}
   })
 }

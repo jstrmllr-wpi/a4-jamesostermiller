@@ -37,6 +37,11 @@
     let promise = $state(getRecipes())
 </script>
 
+<svelte:head>
+    <title>My Account - Recipe Wiki</title>
+    <meta name="description" content="See your recipes and update your account settings." />
+</svelte:head>
+
 <section id='profile-info' class='pure-u-1 form-wrapper'>
     <form action='/editaccount' method='POST' class='pure-form centered'>
         <label for='password'>New password:</label>
