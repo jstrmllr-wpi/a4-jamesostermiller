@@ -36,53 +36,62 @@
             body: body
         })
         .then(response => response.json() )
+
+        document.querySelector('#create-recipe').reset()
     }
 
     let promise = $state(getRecipes())
 </script>
 
-<section id='recipe-form' class='pure-u-1 pure-u-md-1-2 form-wrapper'>
-    <h2>New Recipe</h2>
-    <form id='create-recipe' onsubmit={newRecipe} class='pure-form pure-form-aligned centered'>
-    <div class='pure-control-group'>
-        <label for='recipename'>*Recipe name:</label>
-        <input type='text' id='recipename' placeholder='Chocolate Chip Cookies' required>
-    </div>
+<svelte:head>
+    <title>Browse Recipes - Recipe Wiki</title>
+    <meta name='description' content='Upload your recipes and see what other people are making.'>
+</svelte:head>
 
-    <div class='pure-control-group'>
-        <label for='preptime'>Prep time:</label>
-        <unit-wrapper>
-        <input type='number' id='preptime' placeholder='30' min=0 />
-        <input-unit>minutes</input-unit>
-        </unit-wrapper>
-    </div>
+<main class='pure-g'>
+    <section id='recipe-form' class='pure-u-1 pure-u-md-1-2 form-wrapper'>
+        <h2>New Recipe</h2>
+        <form id='create-recipe' onsubmit={newRecipe} class='pure-form pure-form-aligned centered'>
+        <div class='pure-control-group'>
+            <label for='recipename'>*Recipe name:</label>
+            <input type='text' id='recipename' placeholder='Chocolate Chip Cookies' required>
+        </div>
 
-    <div class='pure-control-group'>
-        <label for='cooktime'>Cook time:</label>
-        <unit-wrapper>
-        <input type='number' id='cooktime' placeholder='15' min=0 />
-        <input-unit>minutes</input-unit>
-        </unit-wrapper>
-    </div>
+        <div class='pure-control-group'>
+            <label for='preptime'>Prep time:</label>
+            <unit-wrapper>
+            <input type='number' id='preptime' placeholder='30' min=0 />
+            <input-unit>minutes</input-unit>
+            </unit-wrapper>
+        </div>
 
-    <div class='pure-control-group'>
-        <label for='ingredients'>*Ingredients:</label>
-        <textarea required id='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
-    </div>
+        <div class='pure-control-group'>
+            <label for='cooktime'>Cook time:</label>
+            <unit-wrapper>
+            <input type='number' id='cooktime' placeholder='15' min=0 />
+            <input-unit>minutes</input-unit>
+            </unit-wrapper>
+        </div>
 
-    <div class='pure-control-group'>
-        <label for='steps'>*Steps:</label>
-        <textarea required id='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
-    </div>
-    
+        <div class='pure-control-group'>
+            <label for='ingredients'>*Ingredients:</label>
+            <textarea required id='ingredients' placeholder='1 cup sugar&#10;1 cup flour&#10;...'></textarea>
+        </div>
 
-    <div class='pure-controls'>
-        <input type='submit' value='Create' class='pure-button pure-button-primary'>
-    </div>
-    </form>
-</section>
+        <div class='pure-control-group'>
+            <label for='steps'>*Steps:</label>
+            <textarea required id='steps' placeholder='1. Combine dry ingredients in a small bowl...'></textarea>
+        </div>
+        
 
-<section id='recipe-list' class='pure-u-1 pure-u-md-1-2'>
-    <h2>Submitted Recipes</h2>
-    <RecipeList onprofile={false} {promise} />
-</section>
+        <div class='pure-controls'>
+            <input type='submit' value='Create' class='pure-button pure-button-primary'>
+        </div>
+        </form>
+    </section>
+
+    <section id='recipe-list' class='pure-u-1 pure-u-md-1-2'>
+        <h2>Submitted Recipes</h2>
+        <RecipeList onprofile={false} {promise} />
+    </section>
+</main>

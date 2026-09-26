@@ -42,14 +42,16 @@
     <meta name="description" content="See your recipes and update your account settings." />
 </svelte:head>
 
-<section id='profile-info' class='pure-u-1 form-wrapper'>
-    <form action='/editaccount' method='POST' class='pure-form centered'>
-        <label for='password'>New password:</label>
-        <input type='password' id='password' name='password' required>
-        <input type='submit' value='Submit' class='pure-button pure-button-primary'>
-    </form>
-</section>
-<section id='recipe-list' class='pure-u-1'>
-    <h2>My recipes</h2>
-    <RecipeList onprofile={true} {promise} deleteFunction={deleteRecipe} />
-</section>
+<main class='pure-g'>
+    <section id='profile-info' class='pure-u-1 form-wrapper'>
+        <form action='/editaccount' method='POST' class='pure-form centered'>
+            <label for='password'>New password:</label>
+            <input type='password' id='password' name='password' required>
+            <input type='submit' value='Submit' class='pure-button pure-button-primary'>
+        </form>
+    </section>
+    <section id='recipe-list' class='pure-u-1'>
+        <h2>My recipes</h2>
+        <RecipeList onprofile={true} {promise} deleteFunction={deleteRecipe} />
+    </section>
+</main>

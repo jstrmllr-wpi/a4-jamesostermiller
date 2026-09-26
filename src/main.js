@@ -22,59 +22,61 @@ if(username){
   loggedin = true
 }
 
-// Handles page-specific javascript
+// Checks login status and then mounts the page content depending on the path
 if(window.location.pathname == '/index.html'){
-  // if(!loggedin){
-  //   window.location.replace('login.html')
-  // }
-  // else{
+  if(!loggedin){
+    window.location.replace('login.html')
+  }
+  else{
     const index = mount(Index, {
-      target: document.querySelector('main')
+      target: document.querySelector('body')
     })
-  // }
+  }
 }
-else if(window.location.pathname == '/profile.html'){
+if(window.location.pathname == '/profile.html'){
   if(!loggedin){
     window.location.replace('login.html')
   }
   const profile = mount(Profile, {
-    target: document.querySelector('main')
+    target: document.querySelector('body')
   })
 }
-else if(window.location.pathname == '/login.html'){
+if(window.location.pathname == '/login.html'){
   if(loggedin){
     window.location.replace('index.html')
   }
   else{
     console.log('Attempting to mount login')
-    mountLoginForm('/login')
+    const loginForm = mount(LoginForm, {
+      target: document.querySelector('body'),
+      props: {
+        action:'/login',
+        heading:'Log in',
+        title:'Log In',
+        description:'Log in to share your recipes.'
+      }
+    })
   }
 }
-else if(window.location.pathname == '/createaccount.html'){
+if(window.location.pathname == '/createaccount.html'){
   if(loggedin){
     window.location.replace('index.html')
   }
   else{
-    mountLoginForm('/createaccount')
+    const loginForm = mount(LoginForm, {
+      target: document.querySelector('body'),
+      props: {
+        action:'/createaccount',
+        heading:'Create account',
+        title:'Create Account',
+        description:'Create an account to share your recipes.'
+      }
+    })
   }
 }
 
+// Mounts the header on every page
 const header = mount(Header, {
   target: document.querySelector('header'),
   props: {loggedin, currentpath:window.location.pathname}
 })
-
-
-function mountRecipeList(onprofile){
-  const recipelist = mount(RecipeList, {
-    target: document.getElementById('recipe-list'),
-    props: {onprofile}
-  })
-}
-
-function mountLoginForm(action){
-  const loginForm = mount(LoginForm, {
-    target: document.querySelector('main'),
-    props: {action}
-  })
-}
