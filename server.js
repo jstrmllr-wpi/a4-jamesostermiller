@@ -151,7 +151,12 @@ app.post( '/deleterecipe', async (req,res) => {
   console.log('Recipe ' + id + ' deleted: ' + (confirm.deletedCount === 1))
   // res.json(confirm)
 
-  const result = await recipedb.find({}).toArray()
+  const userid = new ObjectId(req.session.user)
+  const user = await userdb.findOne({_id:userid})
+  let result = null
+  if(user){
+    result = await recipedb.find({author:user.username}).toArray()
+  }
   res.json(result)
 })
 
